@@ -7,15 +7,14 @@ export default function SignInForm() {
 
   const navigate = useNavigate();
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    navigate('/home')
+  const handleSubmit: ClickEventHandler = () => {
+    navigate('/home');
   };
-  const handleChange = (event) => {
-    setName(event.target.value);
+  const handleChange: ChangeEventHandler = (e) => {
+    setName(e.target.value);
   };
-  const passChange = (event) => {
-    setPassword(event.target.value);
+  const passChange: ChangeEventHandler = (e) => {
+    setPassword(e.target.value);
   };
   return (
     <form onSubmit={handleSubmit}>
@@ -25,9 +24,9 @@ export default function SignInForm() {
       </label>
       <label>
         Password:
-        <input type='password' value={password} onChange={passChange} />
+        <input type="password" value={password} onChange={passChange} />
       </label>
-        <button type="submit">Submit</button>
+      <button type="submit">Submit</button>
     </form>
   );
 }
