@@ -1,7 +1,12 @@
-import { Outlet } from 'react-router-dom';
-import SignInForm from '../utility/SignInForm'
+import { Outlet, useActionData } from 'react-router-dom';
+import SignInForm from '../utility/SignInForm';
 
+type Data = {
+  error?: string;
+};
 export default function RootLayout() {
+  const data = useActionData() as Data;
+
   return (
     <div>
       <header>
@@ -10,6 +15,7 @@ export default function RootLayout() {
             <b className="font-bold">Budgeteer</b>
           </h1>
           <SignInForm />
+          {data && data.error && <p>{data.error}</p>}
         </nav>
       </header>
 

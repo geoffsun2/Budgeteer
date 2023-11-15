@@ -10,8 +10,14 @@ import {
 } from 'react-router-dom';
 //Pages
 import Dashboard from './pages/Dashboard.tsx';
-import SetBudget from './pages/SetBudget.tsx'
-import NotFound from './pages/NotFound.tsx'
+import SetBudget from './pages/SetBudget.tsx';
+import NotFound from './pages/NotFound.tsx';
+
+//Loaders
+import dashboardLoader from './loaders/dashboardLoader.tsx'
+
+//Actions
+import signInAction from './actions/signInAction.tsx';
 
 //Layouts
 import RootLayout from './layouts/RootLayout.tsx';
@@ -19,15 +25,15 @@ import HomeLayout from './layouts/HomeLayout.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/">
+    <Route path="/" action={signInAction}>
       <Route element={<RootLayout />}>
         <Route index element={<App />} />
       </Route>
       <Route path="home" element={<HomeLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path='setbudget' element={<SetBudget />} />
+        <Route index element={<Dashboard />} loader={dashboardLoader} />
+        <Route path="setbudget" element={<SetBudget />} />
       </Route>
-      <Route path='*' element={<NotFound />} />
+      <Route path="*" element={<NotFound />} />
     </Route>,
   ),
 );
