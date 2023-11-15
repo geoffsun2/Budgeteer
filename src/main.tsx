@@ -6,16 +6,28 @@ import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
-  RouterProvider
+  RouterProvider,
 } from 'react-router-dom';
-import Dashboard from './pages/Home'; 
+//Pages
+import Dashboard from './pages/Dashboard.tsx';
+import SetBudget from './pages/SetBudget.tsx'
+import NotFound from './pages/NotFound.tsx'
+
+//Layouts
 import RootLayout from './layouts/RootLayout.tsx';
+import HomeLayout from './layouts/HomeLayout.tsx';
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path='/'  element={<RootLayout />}>
-      <Route index element={<App />} />
-      <Route path='home' element={<Dashboard />} />
+    <Route path="/">
+      <Route element={<RootLayout />}>
+        <Route index element={<App />} />
+      </Route>
+      <Route path="home" element={<HomeLayout />}>
+        <Route index element={<Dashboard />} />
+        <Route path='setbudget' element={<SetBudget />} />
+      </Route>
+      <Route path='*' element={<NotFound />} />
     </Route>,
   ),
 );
